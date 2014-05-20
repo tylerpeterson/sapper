@@ -15,6 +15,8 @@ Introduction
 ------------
 Modern web sites spread the work for a single user interaction across many systems. It quickly becomes difficult to understand why things fail or take as long as they do.
 
+![Image of request fanning out across services.](request-cartoon.png)
+
 Sapper is a collection of documents, samples, and libraries that expand on and implement  [Dapper]([http://research.google.com/pubs/pub36356.html) concepts: logging and work-identification practices that allow you to track all the work associated with a business interaction.
 
 ### Read the Dapper Paper
