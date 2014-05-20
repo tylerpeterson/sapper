@@ -38,6 +38,10 @@ Spans
 -----
 In [Dapper]([http://research.google.com/pubs/pub36356.html) all work is organized into spans. A piece of work (or "span") that kicks off other work forwards on parentage information so that all the work originating from a single user interaction can be retrieved and analyzed.
 
+Here's a rubbish class diagram. (The diagrams in the Dapper paper are better.)
+
+![Span ans annotation attributes.](span-class.png)
+
 
 Logging Format
 --------------
