@@ -45,6 +45,60 @@ Here's a rubbish class diagram. (The diagrams in the Dapper paper are better.)
 
 Logging Format
 --------------
+A span is a well identified list of time-stamped messages. *The way a span appears in the logs doesn't necessarilly match this ideal.* 
+
+For example, a single span will often be logged in two halves: one from the client and one from the server.  These halves appear in different files but represent a single span. 
+
+Not only will this span be recorded in halves, but the well-known events need not appear in a literal array. For brevity and convenience we may promote them to attributes of the span itself.
+
+So, the idealized concept looks like this:
+
+    // Idealized Span
+    
+    {
+      "traceId": 1234,
+      "spanId": 2345,
+      "parentId": 3456,
+      "name": "Example.UserLookup",
+      "annotations": [
+        {"msg": "start", "time": 1001},
+        {"msg": "clientSend", "time": 1001},
+        {"msg": "serverReceive", "time": 1003},
+        {"msg": "cacheMiss // a custom message", "time": 1003},
+        {"msg": "serverSend", "time": 1015},
+        {"msg": "clientReceive", "time": 1016},
+        {"msg": "end": "time": 1016}
+      ]
+    }
+
+The span will actually look differently.  Logged in halves there will be some repeated information and neither will be a complete picture of the span.
+
+    // Span Logged by Client
+    // (the real log entry would be on one line.)
+    {
+      "traceId": 1234,
+      "spanId": 2345,
+      "parentId": 3456,
+      "start": 1001,
+      "clientSend": 1001,
+      "clientReceive": 1016,
+      "end": 1016
+    }
+    
+    // The Same Span Logged by Server
+    // (the real log entry would be on one line.)
+    {
+      "traceId": 1234,
+      "spanId": 2345,
+      "name": "Example.UserLookup",
+      "serverReceive": 1003,
+      "serverSend": 1015,
+      "annotations": [
+        {"msg": "cacheMiss // a custom message", "time": 1003}
+      ]
+    }
+
+    
 ### Common Logging Attributes
 ### Client Logging
 ### Server Logging
