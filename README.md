@@ -18,7 +18,7 @@ Modern web sites spread the work for a single user interaction across many syste
 Sapper is a collection of documents, samples, and libraries that expand on and implement  [Dapper]([http://research.google.com/pubs/pub36356.html) concepts: logging and work-identification practices that allow you to track all the work associated with a business interaction.
 
 ### Read the Dapper Paper
-I'll introduce the key concepts. But, the [Dapper]([http://research.google.com/pubs/pub36356.html) does a much better job and is quite readable.
+I'll introduce the key concepts. But, the [Dapper]([http://research.google.com/pubs/pub36356.html) paper does a much better job and is quite readable.
 
 ### My Back Story
 In 2011 I was part of a short-lived team that tried to address the scalability concerns of a major web-site. As part of my work [Tim Shadel](https://twitter.com/timshadel) introduced me to [Dapper]([http://research.google.com/pubs/pub36356.html) -- a description of how to do production performance monitoring of a distributed system. I started adapting the Dapper principles into an internal project called Sapper. 
