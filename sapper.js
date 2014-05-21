@@ -6,19 +6,41 @@
 
 "use strict";
 
+var util = require('util');
+
 function span(params) {
+  var privates = {};
+
+  function makeDescriptor(key) {
+    return {
+      get: function () { return privates[key]; },
+      set: function (val) {
+        if (privates[key] !== null) throw new Error(util.format('Illegal State: %s is already set', key));
+        privates[key] = val;
+      }
+    };
+  }
+
+  function initPrivate(key, params) {
+    privates[key] = params[key] === undefined ? null : params[key];
+  }
+
   var result = Object.create({
     annotate: function (msg) {
 
     }
+  }, {
+    traceId: makeDescriptor('traceId'),
+    spanId: makeDescriptor('spanId'),
+    parentId: makeDescriptor('parentId')
   });
 
   params = params || {};
 
   // Span Properties
-  result.traceId = params.traceId;
-  result.spanId = params.spanId;
-  result.parentId = params.parentId;
+  initPrivate('traceId', params);
+  initPrivate('spanId', params);
+  initPrivate('parentId', params);
 
   // Special Annotations
   result.start = params.start;
