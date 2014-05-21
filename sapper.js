@@ -6,8 +6,17 @@
 
 "use strict";
 
-function span() {
-  return Object.create({});
+function span(traceId, spanId) {
+  var result = Object.create({
+    annotate: function (msg) {
+
+    }
+  });
+
+  result.traceId = traceId;
+  result.spanId = spanId;
+  
+  return result;
 }
 
 function genId() {
