@@ -6,15 +6,19 @@
 
 "use strict";
 
-function span(traceId, spanId) {
+function span(params) {
   var result = Object.create({
     annotate: function (msg) {
 
     }
   });
 
-  result.traceId = traceId;
-  result.spanId = spanId;
+  params = params || {};
+
+  result.traceId = params.traceId;
+  result.spanId = params.spanId;
+  result.start = params.start;
+  result.name = params.name;
   
   return result;
 }

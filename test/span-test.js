@@ -21,13 +21,23 @@ describe("span", function () {
     });
 
     it('can be created with traceId', function () {
-      span = sapper.span(11000);
+      span = sapper.span({traceId: 11000});
       expect(span).to.have.property('traceId', 11000);
     });
 
     it('can be created with spanId', function () {
-      span = sapper.span(null, 12000);
+      span = sapper.span({spanId: 12000});
       expect(span).to.have.property('spanId', 12000);
+    });
+
+    it('can be created with start annotation', function () {
+      span = sapper.span({start: 1234});
+      expect(span).to.have.property('start', 1234);
+    });
+
+    it('can be created with a name', function () {
+      span = sapper.span({name: 'spanName'});
+      expect(span).to.have.property('name', 'spanName');
     });
   });
 });
