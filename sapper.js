@@ -23,6 +23,7 @@ function span(params) {
   // Special Annotations
   result.start = params.start;
   result.name = params.name;
+  result.serverReceive = params.serverReceive;
 
   return result;
 }

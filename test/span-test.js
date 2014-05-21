@@ -44,5 +44,10 @@ describe("span", function () {
       span = sapper.span({name: 'spanName'});
       expect(span).to.have.property('name', 'spanName');
     });
+
+    it('can be created with serverReceive', function () {
+      span = sapper.span({serverReceive: 1234});
+      expect(span).to.have.property('serverReceive', 1234);
+    });
   });
 });
