@@ -30,6 +30,11 @@ describe("span", function () {
       expect(span).to.have.property('spanId', 12000);
     });
 
+    it('can be created with parentId', function () {
+      span = sapper.span({parentId: 1234});
+      expect(span).to.have.property('parentId', 1234);
+    });
+
     it('can be created with start annotation', function () {
       span = sapper.span({start: 1234});
       expect(span).to.have.property('start', 1234);

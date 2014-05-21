@@ -15,11 +15,15 @@ function span(params) {
 
   params = params || {};
 
+  // Span Properties
   result.traceId = params.traceId;
   result.spanId = params.spanId;
+  result.parentId = params.parentId;
+
+  // Special Annotations
   result.start = params.start;
   result.name = params.name;
-  
+
   return result;
 }
 
