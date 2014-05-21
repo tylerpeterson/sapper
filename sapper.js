@@ -7,11 +7,11 @@
 "use strict";
 
 function span() {
-
+  return Object.create({});
 }
 
 function genId() {
-  
+
 }
 
 module.exports = {
