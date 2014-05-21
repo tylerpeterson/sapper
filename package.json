@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/tylerpeterson/sapper/issues"
   },
-  "homepage": "https://github.com/tylerpeterson/sapper"
+  "homepage": "https://github.com/tylerpeterson/sapper",
+  "devDependencies": {
+    "chai": "~1.9.1"
+  }
 }
