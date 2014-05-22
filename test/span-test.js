@@ -43,18 +43,13 @@ describe("span", function () {
       });
     }
 
-    ['traceId', 'spanId', 'parentId'].forEach(function (name) {
+    ['traceId', 'spanId', 'parentId', 'name'].forEach(function (name) {
       verifyProperty(name);
     });
 
     it('can be created with start annotation', function () {
       span = sapper.span({start: 1234});
       expect(span).to.have.property('start', 1234);
-    });
-
-    it('can be created with a name', function () {
-      span = sapper.span({name: 'spanName'});
-      expect(span).to.have.property('name', 'spanName');
     });
 
     it('can be created with serverReceive', function () {

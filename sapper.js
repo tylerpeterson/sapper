@@ -10,6 +10,8 @@ var util = require('util');
 
 function span(params) {
   var privates = {};
+  var properties = ['traceId', 'spanId', 'parentId', 'name'];
+  var descriptors = {};
 
   function makeDescriptor(key) {
     return {
@@ -21,6 +23,10 @@ function span(params) {
     };
   }
 
+  properties.forEach(function (name) {
+    descriptors[name] = makeDescriptor(name);
+  });
+
   function initPrivate(key, params) {
     privates[key] = params[key] === undefined ? null : params[key];
   }
@@ -29,22 +35,17 @@ function span(params) {
     annotate: function (msg) {
 
     }
-  }, {
-    traceId: makeDescriptor('traceId'),
-    spanId: makeDescriptor('spanId'),
-    parentId: makeDescriptor('parentId')
-  });
+  }, descriptors);
 
   params = params || {};
 
   // Span Properties
-  initPrivate('traceId', params);
-  initPrivate('spanId', params);
-  initPrivate('parentId', params);
+  properties.forEach(function (name) {
+    initPrivate(name, params);
+  });
 
   // Special Annotations
   result.start = params.start;
-  result.name = params.name;
   result.serverReceive = params.serverReceive;
 
   return result;
