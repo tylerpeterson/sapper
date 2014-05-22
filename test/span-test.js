@@ -20,55 +20,31 @@ describe("span", function () {
       expect(span).to.have.property('annotate').that.is.a('function');
     });
 
-    it('can be created with traceId', function () {
-      span = sapper.span({traceId: 11000});
-      expect(span).to.have.property('traceId', 11000);
-    });
+    function verifyProperty(name) {
+      it('can be created with ' + name, function () {
+        var params = {};
+        params[name] = 1234;
+        span = sapper.span(params);
+        expect(span).to.have.property(name, 1234);
+      });
 
-    it('allows you to late set the traceId', function () {
-      span.traceId = 1234;
-      expect(span).to.have.property('traceId', 1234);
-    });
+      it('allows you to late set the ' + name, function () {
+        span[name] = 1234;
+        expect(span).to.have.property(name, 1234);
+      });
 
-    it('prevents changing the traceId', function () {
-      span = sapper.span({traceId: 1234});
-      expect(function () {
-        span.traceId = 5678;
-      }).to.throw(Error);
-    });
+      it('prevents changing the ' + name, function () {
+        var params = {};
+        params[name] = 1234;
+        span = sapper.span(params);
+        expect(function () {
+          span[name] = 5678;
+        }).to.throw(Error);
+      });
+    }
 
-    it('can be created with spanId', function () {
-      span = sapper.span({spanId: 12000});
-      expect(span).to.have.property('spanId', 12000);
-    });
-
-    it('allows you to late set the spanId', function () {
-      span.spanId = 1234;
-      expect(span).to.have.property('spanId', 1234);
-    });
-
-    it('prevents changing the spanId', function () {
-      span = sapper.span({spanId: 1234});
-      expect(function () {
-        span.spanId = 5678;
-      }).to.throw(Error);
-    });
-
-    it('can be created with parentId', function () {
-      span = sapper.span({parentId: 1234});
-      expect(span).to.have.property('parentId', 1234);
-    });
-
-    it('allows you to late set the parentId', function () {
-      span.parentId = 1234;
-      expect(span).to.have.property('parentId', 1234);
-    });
-
-    it('prevents changing the parentId', function () {
-      span = sapper.span({parentId: 1234});
-      expect(function () {
-        span.parentId = 5678;
-      }).to.throw(Error);
+    ['traceId', 'spanId', 'parentId'].forEach(function (name) {
+      verifyProperty(name);
     });
 
     it('can be created with start annotation', function () {
