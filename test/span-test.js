@@ -43,18 +43,9 @@ describe("span", function () {
       });
     }
 
-    ['traceId', 'spanId', 'parentId', 'name'].forEach(function (name) {
+    ['traceId', 'spanId', 'parentId', 'name',
+     'start', 'clientSend', 'serverReceive', 'serverSend', 'clientReceive', 'end'].forEach(function (name) {
       verifyProperty(name);
-    });
-
-    it('can be created with start annotation', function () {
-      span = sapper.span({start: 1234});
-      expect(span).to.have.property('start', 1234);
-    });
-
-    it('can be created with serverReceive', function () {
-      span = sapper.span({serverReceive: 1234});
-      expect(span).to.have.property('serverReceive', 1234);
     });
   });
 });
