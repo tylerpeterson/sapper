@@ -47,5 +47,14 @@ describe("span", function () {
      'start', 'clientSend', 'serverReceive', 'serverSend', 'clientReceive', 'end'].forEach(function (name) {
       verifyProperty(name);
     });
+
+    it('has a custom toString that returns JSON', function () {
+      expect(span).to.have.property('toString').not.equal(Object.prototype.toString);
+      expect(span).to.respondTo('toString');
+      expect(span.toString()).to.be.a('string');
+      expect(function () {
+        JSON.parse(span.toString());
+      }).to.not.throw();
+    });
   });
 });

@@ -54,6 +54,9 @@ function span(params) {
   var result = Object.create({
     annotate: function (msg) {
 
+    },
+    toString: function () {
+      return JSON.stringify(privates);
     }
   }, descriptors);
 
